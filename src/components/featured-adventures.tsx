@@ -1,0 +1,80 @@
+"use client"
+
+import { useMemo } from "react";
+import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import races from "../races/corridas_detalhadas.json";
+
+interface Race {
+  name: string;
+  type: string;
+  distances: string[];
+  price: string;
+  images: string[];
+  detailsUrl: string;
+  saleStatus: string;
+  date: string;
+  country: string;
+  description: string;
+  whatsapp: string;
+}
+
+function slugify(text: string): string {
+  return text
+    .normalize("NFD")
+    .replace(/\p{Diacritic}+/gu, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)+/g, "");
+}
+
+export function FeaturedAdventures() {
+  const racesWithSlugs = useMemo(
+    () => races.map((race) => ({ ...race, slug: slugify(race.name) })),
+    []
+  );
+
+  return (
+    <>
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+        <div className="w-full px-4 md:px-6">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <div className="space-y-2">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Featured Adventures</h2>
+              <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                Discover some of the most popular trails and races in our community.
+              </p>
+            </div>
+          </div>
+          <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-12">
+            {racesWithSlugs.map((race) => (
+              <Card key={race.name}>
+                <img
+                  src={race.images[0] || "/placeholder.svg"}
+                  width="400"
+                  height="225"
+                  alt={race.name}
+                  className="w-full aspect-video overflow-hidden rounded-t-xl object-cover"
+                />
+                <CardContent className="p-4 flex flex-col items-center space-y-2">
+                  <h3 className="text-lg font-bold">{race.name}</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{race.country}</p>
+                  <div className="flex items-center gap-4">
+                    <Badge variant="secondary">{race.type}</Badge>
+                    <div className="text-sm">{race.distances.join(", ")}</div>
+                  </div>
+                  <Link href={`/corrida/${race.slug}`} className="mt-4">
+                    <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
+                      Mais informações
+                    </button>
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
