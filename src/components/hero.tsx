@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 export function Hero() {
@@ -8,21 +10,24 @@ export function Hero() {
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                Discover Epic Adventure Races & Trails
+                Descubra Corridas e Trilhas de Aventura Épicas
               </h1>
               <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-                Connect with fellow adventurers, discover new trails, and share your favorite racing routes. Create detailed
-                listings with photos to help others find their next great adventure.
+                Conecte-se com outros aventureiros, descubra novas trilhas e compartilhe suas rotas de corrida favoritas. Crie listagens detalhadas
+                com fotos para ajudar outras pessoas a encontrarem sua próxima grande aventura.
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
-              <Link
-                href="#"
-                className="inline-flex h-10 items-center justify-center rounded-md bg-green-500 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-green-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-green-700 disabled:pointer-events-none disabled:opacity-50"
-                prefetch={false}
+              <a
+                href="#aventuras-destaque"
+                className="inline-flex h-10 items-center justify-center rounded-md bg-green-500 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-green-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-green-700 disabled:pointer-events-none disabled:opacity-50 cursor-pointer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('aventuras-destaque')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
-                Explore Trails
-              </Link>
+                Explorar Trilhas
+              </a>
             </div>
           </div>
           <img

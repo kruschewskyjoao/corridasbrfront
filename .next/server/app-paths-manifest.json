@@ -1,5 +1,6 @@
 {
   "/corrida/[slug]/page": "app/corrida/[slug]/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/todas-corridas/page": "app/todas-corridas/page.js"
 }

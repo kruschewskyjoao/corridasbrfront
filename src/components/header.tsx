@@ -1,3 +1,6 @@
+"use client";
+
+import { usePathname } from 'next/navigation';
 import Link from "next/link";
 
 function MountainIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -20,15 +23,32 @@ function MountainIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export function Header() {
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
+
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isHomePage) {
+      e.preventDefault();
+      const element = document.getElementById('aventuras-destaque');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <header className="px-4 lg:px-6 h-14 flex items-center bg-white shadow-sm dark:bg-gray-950">
-      <Link href="#" className="flex items-center justify-center" prefetch={false}>
+      <Link href="/" className="flex items-center justify-center" prefetch={false}>
         <MountainIcon className="h-6 w-6 text-green-500" />
-        <span className="ml-2 text-lg font-bold">TrailQuest</span>
+        <span className="ml-2 text-lg font-bold">CorridaEmFoco</span>
       </Link>
       <nav className="ml-auto flex gap-4 sm:gap-6">
-        <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
-          Browse Trails
+        <Link 
+          href={isHomePage ? '#aventuras-destaque' : '/'} 
+          className="text-sm font-medium hover:underline underline-offset-4"
+          onClick={handleScroll}
+        >
+          Ver Trilhas
         </Link>
       </nav>
     </header>

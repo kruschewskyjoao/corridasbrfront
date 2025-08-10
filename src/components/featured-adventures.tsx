@@ -37,14 +37,22 @@ export function FeaturedAdventures() {
 
   return (
     <>
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+      <section id="aventuras-destaque" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
         <div className="w-full px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Featured Adventures</h2>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Aventuras em Destaque</h2>
               <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                Discover some of the most popular trails and races in our community.
+                Descubra algumas das trilhas e corridas mais populares da nossa comunidade.
               </p>
+            </div>
+            <div className="pt-6">
+              <a
+                href="/todas-corridas"
+                className="inline-flex items-center justify-center rounded-md bg-green-500 px-6 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:bg-green-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+              >
+                Ver Todas as Corridas
+              </a>
             </div>
           </div>
           <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-12">

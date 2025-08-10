@@ -65,13 +65,13 @@ function UsersIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export function Features() {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32">
-      <div className="container px-4 md:px-6">
+    <section className="w-full min-h-screen flex items-center justify-center py-12 md:py-24 lg:py-32">
+      <div className="container px-4 md:px-6 mx-auto">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Everything You Need for Adventure</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Tudo o que Você Precisa para sua Aventura</h2>
             <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-              From trail discovery to race planning, our platform connects the adventure community.
+              Da descoberta de trilhas ao planejamento de corridas, nossa plataforma conecta a comunidade de aventura.
             </p>
           </div>
         </div>
@@ -82,9 +82,9 @@ export function Features() {
                 <CameraIcon className="h-8 w-8 text-green-500 dark:text-green-400" />
               </div>
             </div>
-            <h3 className="text-xl font-bold">Rich Photo Listings</h3>
+            <h3 className="text-xl font-bold">Listagens com Fotos</h3>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Upload up to 5 high-quality photos to showcase your trails and races.
+              Faça upload de até 5 fotos de alta qualidade para mostrar suas trilhas e corridas.
             </p>
           </div>
           <div className="grid gap-1 text-center">
@@ -93,9 +93,9 @@ export function Features() {
                 <LocateIcon className="h-8 w-8 text-green-500 dark:text-green-400" />
               </div>
             </div>
-            <h3 className="text-xl font-bold">Detailed Locations</h3>
+            <h3 className="text-xl font-bold">Localizações Detalhadas</h3>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Precise location data and trail information to help adventurers find their way.
+              Dados de localização precisos e informações da trilha para ajudar os aventureiros a se localizarem.
             </p>
           </div>
           <div className="grid gap-1 text-center">
@@ -104,9 +104,9 @@ export function Features() {
                 <UsersIcon className="h-8 w-8 text-green-500 dark:text-green-400" />
               </div>
             </div>
-            <h3 className="text-xl font-bold">Community Driven</h3>
+            <h3 className="text-xl font-bold">Comunidade Ativa</h3>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Connect with fellow adventurers and share experiences from the trail.
+              Conecte-se com outros aventureiros e compartilhe experiências da trilha.
             </p>
           </div>
         </div>
