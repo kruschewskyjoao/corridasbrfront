@@ -1,1 +1,11 @@
-{"version":4,"routes":{"/corrida/maratona-de-curitiba":{},"/corrida/maratona-de-porto-alegre":{},"/corrida/maratona-monumental-de-brasilia":{},"/corrida/nb-42k-porto-alegre":{},"/corrida/maratona-de-aracaju":{}},"dynamicRoutes":{"/corrida/[slug]":{"fallback":null}},"notFoundRoutes":[],"preview":{"previewModeId":"72c1b04b9abb07d7200a81c40e345506","previewModeSigningKey":"a2403a23cd8799e5cb4a9dabc336631d17ba7761396d8cd7aee33211b9607a90","previewModeEncryptionKey":"94c5b19d41f64eca8da8d0c16209cbf1bd32f5f0051901ceaafdb41265da496e"}}
+{
+  "version": 4,
+  "routes": {},
+  "dynamicRoutes": {},
+  "notFoundRoutes": [],
+  "preview": {
+    "previewModeId": "fe6885a3100928fe7aa092c0c5bd2567",
+    "previewModeSigningKey": "1fa5379a233cf612fd06fa826e50000178e6edba9b7ea59610c343a4bc484511",
+    "previewModeEncryptionKey": "78adcb74c1d0917410551426b94e448c6cb79d160a49f2c408440e4f9ca111ff"
+  }
+}
