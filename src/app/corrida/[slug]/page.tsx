@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import races from "../../../../public/corridas_detalhadas.json";
 
 interface Race {
   name: string;
@@ -25,14 +26,12 @@ function slugify(text: string): string {
 }
 
 export async function generateStaticParams() {
-  const races = await fetch('http://localhost:3000/corridas_detalhadas.json').then(res => res.json());
-  return races.map((race: Race) => ({ slug: slugify(race.name) }));
+  return (races as Race[]).map((race) => ({ slug: slugify(race.name) }));
 }
 
 export default async function RaceDetails({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const races = await fetch('http://localhost:3000/corridas_detalhadas.json').then(res => res.json());
-  const race = races.find((r: Race) => slugify(r.name) === slug);
+  const race = (races as Race[]).find((r) => slugify(r.name) === slug);
 
   if (!race) {
     return (

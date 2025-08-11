@@ -33,8 +33,14 @@ export function FeaturedAdventures() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Em produção, o arquivo está em /public, então podemos fazer fetch relativo
     fetch('/corridas_detalhadas.json')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Falha ao carregar dados');
+        }
+        return res.json();
+      })
       .then(data => {
         setRaces(data);
         setLoading(false);
