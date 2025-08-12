@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 export function Hero() {
@@ -30,12 +31,13 @@ export function Hero() {
               </a>
             </div>
           </div>
-          <img
+          <Image
             src="/hero-run.jpg"
             width="550"
             height="550"
             alt="Hero"
             className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
+            priority
           />
         </div>
       </div>
