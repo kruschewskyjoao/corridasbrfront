@@ -97,5 +97,27 @@ npm run start
 - A listagem de corridas fica em `src/components/featured-adventures.tsx`.
 - O botão “Mais informações” navega para a página de detalhes.
 
+### Convenção: tipagem de `params` em rotas dinâmicas (App Router)
+
+No App Router do Next.js, quando uma rota dinâmica usa `generateStaticParams` ou é pre-renderizada, os handlers de rota (por exemplo `page.tsx` e `generateMetadata`) podem receber `params` como uma Promise. Para evitar conflitos de tipos durante o build, adotamos a convenção abaixo:
+
+- Assinar a função com `params` como Promise e extrair o valor com `await`.
+
+Exemplo recomendado:
+
+```tsx
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  // ...montar metadata
+}
+
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  // ...render
+}
+```
+
+Isso evita erros de tipagem durante o build (onde o Next gera tipos de verificação) e mantém compatibilidade com `generateStaticParams`.
+
 ### Licença
 Uso interno/estudo. Ajuste conforme sua necessidade.

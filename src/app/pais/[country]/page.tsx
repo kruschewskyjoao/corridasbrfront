@@ -1,6 +1,8 @@
 import { RaceList } from "@/components/race-list";
+
 import racesData from "../../../../public/corridas_detalhadas.json";
 import { Metadata } from "next";
+
 
 interface Race {
   name: string;
@@ -15,6 +17,7 @@ interface Race {
   description?: string;
   whatsapp?: string;
 }
+
 
 function slugify(text: string): string {
   if (!text) return "";
@@ -33,8 +36,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { country: string } }): Promise<Metadata> {
-  const countryName = params.country.charAt(0).toUpperCase() + params.country.slice(1).replace(/-/g, " ");
+export async function generateMetadata({ params }: { params: Promise<{ country: string }> }): Promise<Metadata> {
+  const { country } = await params;
+  const countryName = country.charAt(0).toUpperCase() + country.slice(1).replace(/-/g, " ");
   return {
     title: `Corridas no ${countryName} - Encontre Provas e Eventos`,
     description: `Lista completa de corridas e trilhas de aventura no ${countryName}. Encontre sua próxima maratona, meia maratona ou corrida de rua.`,
@@ -42,11 +46,13 @@ export async function generateMetadata({ params }: { params: { country: string }
   };
 }
 
-export default async function CountryPage({ params }: { params: { country: string } }) {
-  const countryName = params.country.replace(/-/g, " ");
+
+export default async function CountryPage({ params }: { params: Promise<{ country: string }> }) {
+  const { country } = await params;
+  const countryName = country.replace(/-/g, " ");
 
   const racesWithSlugs = (racesData as Race[])
-    .filter((race) => race.country && slugify(race.country) === params.country)
+    .filter((race) => race.country && slugify(race.country) === country)
     .map((race) => ({
       ...race,
       slug: slugify(race.name),
