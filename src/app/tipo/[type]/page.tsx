@@ -33,8 +33,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { type: string } }): Promise<Metadata> {
-  const typeName = params.type.charAt(0).toUpperCase() + params.type.slice(1).replace(/-/g, " ");
+export async function generateMetadata({ params }: { params: Promise<{ type: string }> }): Promise<Metadata> {
+  const { type } = await params;
+  const typeName = type.charAt(0).toUpperCase() + type.slice(1).replace(/-/g, " ");
   return {
     title: `Corridas do tipo ${typeName} - Calendário de Provas`,
     description: `Encontre as melhores corridas do tipo ${typeName}. Lista de eventos, datas e informações para inscrição.`,
@@ -42,11 +43,12 @@ export async function generateMetadata({ params }: { params: { type: string } })
   };
 }
 
-export default async function TypePage({ params }: { params: { type: string } }) {
-  const typeName = params.type.replace(/-/g, " ");
+export default async function TypePage({ params }: { params: Promise<{ type: string }> }) {
+  const { type } = await params;
+  const typeName = type.replace(/-/g, " ");
 
   const racesWithSlugs = (racesData as Race[])
-    .filter((race) => race.type && slugify(race.type) === params.type)
+    .filter((race) => race.type && slugify(race.type) === type)
     .map((race) => ({
       ...race,
       slug: slugify(race.name),
